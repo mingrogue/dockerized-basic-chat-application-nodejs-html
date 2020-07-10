@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>WebScockets 101</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+      <link href="/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+      <div id="Arnabs-chat">
+        <h2>Arnab's Chat</h2>
+        <div id="chat-window">
+          <div id="output"></div>
+          <div id="feedback"></div>
+        </div>
+        <input id="name" type="text" placeholder="name" />
+        <input id="message" type="text" placeholder="Message" />
+        <button id="send">Send</button>
+      </div>
+    </body>
+  <script>
+    let socket = io.connect('http://192.168.225.250:4000'); //give your local ip here or keep it localhost.
+
+    let message = document.getElementById('message');
+    let name = document.getElementById('name');
+    let button = document.getElementById('send');
+    let output = document.getElementById('output');
+    let feedback = document.getElementById('feedback');
+
+    button.addEventListener('click', function(){
+      socket.emit('chat', {
+        message: message.value,
+        name: name.value
+      });
+      message.value = "";
+    });
+
+    message.addEventListener('keypress', function(){
+      socket.emit('typing', name.value);
+    })
+
+    socket.on('chat', function(data){
+      feedback.innerHTML = '';
+      output.innerHTML += '<p><strong>' + data.name + ': </strong>' + data.message + '</p>';
+    });
+
+    socket.on('typing', function(data){
+      feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+    });
+
+  </script>
+</html>

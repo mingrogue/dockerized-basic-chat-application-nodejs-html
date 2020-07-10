@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  chat-server:
+    image: node:12-alpine
+    working_dir: /chat-server
+    command: npm start
+    volumes:
+      - type: bind
+        source: ./chat-server
+        target: /chat-server
+    ports:
+      - "4000:4000"
+
