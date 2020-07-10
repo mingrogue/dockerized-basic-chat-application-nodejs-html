@@ -1,5 +1,5 @@
 # basic-chat-application-node.js-html
-global chat application, anyone can access, can be best for unrestricted group chats. It is done with node.js and html.
+Node.js powered global chat application, anyone can access, can be best for unrestricted group chats.
 
 #To install application -
 make install
