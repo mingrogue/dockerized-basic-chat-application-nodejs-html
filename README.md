@@ -1,5 +1,5 @@
-# basic-chat-application-nodejs-html
-global chat application, anyone can access, can be best for unrestricted group chats
+# Dockerized basic-chat-application-nodejs-html
+Dockerized global chat application, anyone can access, can be best for unrestricted group chats
 
 #Install make in your machine.
 
